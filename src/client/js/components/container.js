@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react')
-	, SetIntervalMixin = require('../mixins/setInterval')
-    , Button = require('./controls/button')
+	, Button = require('./controls/button')
     , ListItem = require('./listItem')
     , NewItemForm = require('./newItemForm')
     , ItemsService = require('../services/items');

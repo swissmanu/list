@@ -29,7 +29,7 @@ Items.prototype.addNewItem = function addNewItem(item) {
 Items.prototype.deleteItemWithName = function deleteItemWithName(itemName) {
     var deferred = q.defer();
 
-    new Firebase(FIREBASE_URL + '/' + itemName).remove(function(err) {
+    new Firebase(firebaseItemsUrl + '/' + itemName).remove(function(err) {
         if(err === null) {
             deferred.resolve();
         } else {

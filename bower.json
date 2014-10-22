@@ -1,0 +1,13 @@
+{
+  "name": "list",
+  "version": "0.0.1",
+  "authors": [
+    "Manuel Alabor <manuel@alabor.me>"
+  ],
+  "license": "MIT",
+  "homepage": "http://github.com/swissmanu/list",
+  "private": true,
+  "dependencies": {
+    "fontawesome": "~4.0.3"
+  }
+}

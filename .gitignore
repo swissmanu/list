@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+bower_components/
+public/css/
+public/fonts/
+public/js/app*.js
+src/client/js/config.js
+.idea/

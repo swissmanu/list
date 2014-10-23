@@ -19,13 +19,29 @@ var gulp = require('gulp')
 	, srcPaths = ['./src/client/js/**/*.js']
 	, scssPaths = ['./src/client/scss/**/*.scss'];
 
-
 gulp.task('bowerFontawesome', function() {
 	gulp.src('./bower_components/fontawesome/fonts/*')
-	.pipe(gulp.dest('./public/fonts'));
+	    .pipe(gulp.dest('./public/fonts'));
 });
 
-gulp.task('bower', ['bowerFontawesome']);
+gulp.task('bowerMaterialBootstrap', ['bowerMaterialBootstrap-css', 'bowerMaterialBootstrap-fonts', 'bowerMaterialBootstrap-js']);
+gulp.task('bowerMaterialBootstrap-css', function() {
+    gulp.src([
+        './bower_components/bootstrap-material-design/dist/css/*-wfont.min.css'
+        , './bower_components/bootstrap-material-design/dist/css/ripples.min.css*'
+    ])
+        .pipe(gulp.dest('./public/css'));
+});
+gulp.task('bowerMaterialBootstrap-fonts', function() {
+    gulp.src('./bower_components/bootstrap-material-design/dist/fonts/**/*')
+        .pipe(gulp.dest('./public/fonts'));
+});
+gulp.task('bowerMaterialBootstrap-js', function() {
+    gulp.src('./bower_components/bootstrap-material-design/dist/js/**/*.min.js')
+        .pipe(gulp.dest('./public/js'));
+});
+
+gulp.task('bower', ['bowerFontawesome', 'bowerMaterialBootstrap']);
 
 
 gulp.task('sass', ['bower'], function () {

@@ -24,7 +24,12 @@ var TextField = React.createClass({
     , render: function() {
         return (
             /* jshint ignore:start */
-            <input type="text" value={ this.props.value } onChange={ this.onChange } disabled={ !this.props.enabled } />
+            <input
+                type="text"
+                value={ this.props.value }
+                onChange={ this.onChange }
+                disabled={ !this.props.enabled }
+                className="form-control" />
             /* jshint ignore:end */
         );
     }

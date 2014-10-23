@@ -39,9 +39,13 @@ var ListItem = React.createClass({
     , render: function() {
         return (
             /* jshint ignore:start */
-            <form>
-                <TextField onChange={ this.onChangeText } value={ this.state.text } enabled={ !this.state.adding } />
-                <Button onClick={ this.onAdd } label="Add" enabled={ this.isAddButtonEnabled() } />
+            <form className="form-horizontal">
+                <div className="input-group">
+                    <TextField onChange={ this.onChangeText } value={ this.state.text } enabled={ !this.state.adding } />
+                    <span className="input-group-btn">
+                        <Button onClick={ this.onAdd } label="Add" enabled={ this.isAddButtonEnabled() } primary="true" />
+                    </span>
+                </div>
             </form>
             /* jshint ignore:end */
         );

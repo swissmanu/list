@@ -8,12 +8,14 @@ var Button = React.createClass({
 
         , enabled: React.PropTypes.bool
         , icon: React.PropTypes.string
+        , primary: React.PropTypes.bool
     }
 
     , getDefaultProps: function() {
         return {
             enabled: true
             , icon: undefined
+            , primary: false
         };
     }
 
@@ -30,10 +32,10 @@ var Button = React.createClass({
 
 		return (
 			/* jshint ignore:start */
-			<button onClick={ this.onClick } disabled={ !this.props.enabled }>
+			<a onClick={ this.onClick } disabled={ !this.props.enabled } className={ 'btn' + (this.props.primary ? ' btn-primary' : '') } href="#">
 				{ this.props.icon ? <i className={ iconClassName } /> : '' }
 				{ this.props.label ? this.props.label : '' }
-			</button>
+			</a>
 			/* jshint ignore:end */
 		);
 	}

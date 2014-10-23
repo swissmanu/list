@@ -8,6 +8,7 @@
   "homepage": "http://github.com/swissmanu/list",
   "private": true,
   "dependencies": {
-    "fontawesome": "~4.0.3"
+    "fontawesome": "~4.0.3",
+    "bootstrap-material-design": "~0.1.1"
   }
 }

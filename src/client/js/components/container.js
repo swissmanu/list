@@ -66,7 +66,7 @@ var Container = React.createClass({
 
 		return (
 			/* jshint ignore:start */
-			<section>
+			<section className="container">
                 <NewItemForm onAdd={ this.addNewItem } />
                 <p>Total: { this.state.items.length }</p>
 				<ul>{

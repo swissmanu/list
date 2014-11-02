@@ -6,12 +6,14 @@ var TextField = React.createClass({
     propTypes: {
         onChange: React.PropTypes.func.isRequired
         , value: React.PropTypes.string
+        , placeholder: React.PropTypes.string
         , enabled: React.PropTypes.bool
     }
 
     , getDefaultProps: function() {
         return {
             text: ''
+            , placeholder: ''
             , enabled: true
         };
     }
@@ -27,6 +29,7 @@ var TextField = React.createClass({
             <input
                 type="text"
                 value={ this.props.value }
+                placeholder={ this.props.placeholder }
                 onChange={ this.onChange }
                 disabled={ !this.props.enabled }
                 className="form-control" />

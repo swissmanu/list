@@ -2,59 +2,33 @@
 var React = require('react')
 	, Button = require('./controls/button')
     , ListItem = require('./listItem')
+    , CreateNewListItem = require('./createNewListItem')
     , NewItemForm = require('./newItemForm')
-    , ItemsService = require('../services/items');
+	, ItemStore = require('../stores/ItemStore');
 
 var Container = React.createClass({
     getInitialState: function() {
-        this.items = [];
-
         return {
-            items: []
+            items: ItemStore.getAll()
         };
     }
 
-	, componentWillMount: function() {
-        this.itemsService = new ItemsService();
-        this.itemsService.firebaseRef.on('child_added', function(childSnapshot) {
-            // Only keep track of 25 items at a time
-            if (this.items.length === 25) {
-                this.items.splice(0, 1);
-            }
-
-            this.items.push({
-                name: childSnapshot.ref().name()
-                , data: childSnapshot.val()
-            });
-            this.setState({
-                items: this.items
-            });
-        }.bind(this));
-
-        this.itemsService.firebaseRef.on('child_removed', function(childSnapshot) {
-            var name = childSnapshot.ref().name();
-
-            this.items.some(function (item, index) {
-                if (item.name === name) {
-                    this.items.splice(index, 1);
-                    return true;
-                } else {
-                    return false;
-                }
-            }, this);
-
-            this.setState({
-                items: this.items
-            });
-        }.bind(this));
-    }
+	, componentDidMount: function() {
+		ItemStore.addChangeListener(this._onChange);
+	}
 
     , componentWillUnmount: function() {
-        this.itemsService.destroy();
+        ItemStore.removeChangeListener(this._onChange);
     }
 
+	, _onChange: function() {
+		this.setState({
+			items: ItemStore.getAll()
+		});
+	}
+
     , addNewItem: function(item) {
-        return this.itemsService.addNewItem(item);
+        //return this.itemsService.addNewItem(item);
     }
 
     , deleteItemWithName: function(itemName) {
@@ -69,11 +43,12 @@ var Container = React.createClass({
 			<section className="container">
                 <NewItemForm onAdd={ this.addNewItem } />
                 <p>Total: { this.state.items.length }</p>
-				<ul>{
-                    this.state.items.map(function(item) {
-                        return <ListItem key={item.name} item={item} onDelete={ self.deleteItemWithName } />
-                    })
-                }
+				<ul>
+                    {
+                        this.state.items.map(function(item) {
+                            return <ListItem key={item.name} item={item} onDelete={ self.deleteItemWithName } />
+                        })
+                    }
 				</ul>
 			</section>
 			/* jshint ignore:end */

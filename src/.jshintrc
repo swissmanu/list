@@ -10,6 +10,6 @@
 	, "unused": false
 	, "trailing": true
 	, "maxdepth": 3
-	, "maxlen": 80
+	, "maxlen": 120
 	, "laxcomma": true
 }

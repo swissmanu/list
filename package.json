@@ -3,24 +3,26 @@
   "private": true,
   "version": "0.0.1",
   "description": "",
-  "devDependencies": {
+  "dependencies": {
     "debowerify": "*",
     "envify": "*",
+    "esprima": "*",
     "express": "*",
+    "flux": "^2.0.1",
     "gulp": "*",
-    "gulp-livereload": "*",
     "gulp-browserify": "*",
+    "gulp-livereload": "*",
+    "gulp-nodemon": "*",
     "gulp-notify": "*",
     "gulp-react": "*",
     "gulp-rename": "*",
-    "gulp-sass": "*",
+    "gulp-sass": "~1.1.0 ",
     "gulp-uglify": "*",
     "gulp-util": "*",
+    "q": "^1.0.1",
     "react": "*",
     "reactify": "*",
-    "tiny-lr": "*",
-    "esprima": "*",
-    "gulp-nodemon": "*"
+    "tiny-lr": "*"
   },
   "repository": {
     "type": "git",
@@ -28,19 +30,5 @@
   },
   "author": "Manuel Alabor <manuel@alabor.me>",
   "license": "MIT",
-  "homepage": "https://github.com/swissmanu/list",
-  "dependencies": {
-    "debowerify": "^0.9.1",
-    "envify": "^3.0.0",
-    "esprima": "^1.2.2",
-    "express": "^4.9.8",
-    "firebase": "^1.1.2",
-    "gulp-livereload": "^2.1.1",
-    "gulp-notify": "^2.0.0",
-    "gulp-util": "^3.0.1",
-    "q": "^1.0.1",
-    "react": "^0.11.2",
-    "reactfire": "^0.3.0",
-    "tiny-lr": "^0.1.4"
-  }
+  "homepage": "https://github.com/swissmanu/list"
 }

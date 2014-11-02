@@ -44,7 +44,7 @@ gulp.task('bowerMaterialBootstrap-js', function() {
 gulp.task('bower', ['bowerFontawesome', 'bowerMaterialBootstrap']);
 
 
-gulp.task('sass', ['bower'], function () {
+/*gulp.task('sass', ['bower'], function () {
 	gulp.src('./src/client/scss/app.scss')
 		.pipe(sass({
 			outputStyle: 'compressed'
@@ -54,7 +54,7 @@ gulp.task('sass', ['bower'], function () {
 		.pipe(notify({
 			message: '<%= file.relative %> built'
 		}));
-});
+});*/
 
 gulp.task('browserify', function() {
 	return gulp.src('./src/client/js/index.js', { read: false })
@@ -107,6 +107,6 @@ gulp.task('watch', function() {
 });
 
 
-gulp.task('client', ['sass', /*'uglify',*/ 'browserify', 'server', 'watch']);
+gulp.task('client', [/*'sass', /*'uglify',*/ 'bower', 'browserify', 'server', 'watch']);
 
 gulp.task('default', ['client']);

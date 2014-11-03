@@ -15,6 +15,10 @@ function create(item) {
 	firebaseRef.push(item);
 }
 
+function update(item) {
+	new Firebase(firebaseItemsUrl + '/' + item.name).set(item.data);
+}
+
 function destroy(itemName) {
 	new Firebase(firebaseItemsUrl + '/' + itemName).remove();
 }
@@ -37,27 +41,6 @@ var ItemStore = merge(EventEmitter.prototype, {
 	}
 });
 
-AppDispatcher.register(function(payload) {
-	var action = payload.action;
-
-	console.log(payload);
-
-	switch(action.actionType) {
-		case ItemConstants.ITEM_CREATE:
-			create(action.item);
-			ItemStore.emitChange();
-			break;
-		case ItemConstants.ITEM_DESTROY:
-			destroy(action.itemName);
-			ItemStore.emitChange();
-			break;
-		// add more cases for other actionTypes, like TODO_UPDATE, etc.
-	}
-
-	return true; // No errors. Needed by promise in Dispatcher.
-});
-
-
 firebaseRef.on('child_added', function(childSnapshot) {
 	// Only keep track of 25 items at a time
 	if (items.length === 25) {
@@ -66,6 +49,21 @@ firebaseRef.on('child_added', function(childSnapshot) {
 	items.push({
 		name: childSnapshot.ref().name()
 		, data: childSnapshot.val()
+	});
+
+	this.emitChange();
+}.bind(ItemStore));
+
+firebaseRef.on('child_changed', function(childSnapshot) {
+	var name = childSnapshot.ref().name();
+
+	items.some(function (item, index) {
+		if (item.name === name) {
+			items[index].data = childSnapshot.val();
+			return true;
+		} else {
+			return false;
+		}
 	});
 
 	this.emitChange();
@@ -85,5 +83,26 @@ firebaseRef.on('child_removed', function(childSnapshot) {
 
 	this.emitChange();
 }.bind(ItemStore));
+
+
+AppDispatcher.register(function(payload) {
+	var action = payload.action;
+
+	switch(action.actionType) {
+		case ItemConstants.ITEM_CREATE:
+			create(action.item);
+			break;
+		case ItemConstants.ITEM_UPDATE:
+			update(action.item);
+			break;
+		case ItemConstants.ITEM_DESTROY:
+			destroy(action.itemName);
+			break;
+	}
+
+	ItemStore.emitChange();
+
+	return true; // No errors. Needed by promise in Dispatcher.
+});
 
 module.exports = ItemStore;

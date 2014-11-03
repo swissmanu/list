@@ -1,4 +1,7 @@
-module.exports = {
-	ITEM_CREATE: 'item_create'
-	, ITEM_DESTROY: 'item_destroy'
-};
+var keyMirror = require('react/lib/keyMirror');
+
+module.exports = keyMirror({
+	ITEM_CREATE: null
+	, ITEM_UPDATE: null
+	, ITEM_DESTROY: null
+});

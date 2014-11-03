@@ -9,6 +9,13 @@ var AppDispatcher = require('../dispatcher/AppDispatcher')
 			});
 		}
 
+		, update: function(item) {
+			AppDispatcher.handleViewAction({
+				actionType: ItemConstants.ITEM_UPDATE
+				, item: item
+			});
+		}
+
 		, destroy: function(itemName) {
 			AppDispatcher.handleViewAction({
 				actionType: ItemConstants.ITEM_DESTROY

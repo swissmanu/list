@@ -27,14 +27,6 @@ var Container = React.createClass({
 		});
 	}
 
-    , addNewItem: function(item) {
-        //return this.itemsService.addNewItem(item);
-    }
-
-    , deleteItemWithName: function(itemName) {
-        return this.itemsService.deleteItemWithName(itemName);
-    }
-
 	, render: function() {
         var self = this;
 
@@ -46,7 +38,7 @@ var Container = React.createClass({
 				<ul>
                     {
                         this.state.items.map(function(item) {
-                            return <ListItem key={item.name} item={item} onDelete={ self.deleteItemWithName } />
+                            return <ListItem key={item.name} item={item} />
                         })
                     }
 				</ul>

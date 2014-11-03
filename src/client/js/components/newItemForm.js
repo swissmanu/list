@@ -3,6 +3,7 @@
 var React = require('react')
     , Button = require('./controls/button')
     , TextField = require('./controls/textField')
+	, ItemActions = require('../actions/ItemActions')
     , q = require('q');
 
 var ListItem = React.createClass({
@@ -14,7 +15,7 @@ var ListItem = React.createClass({
     }
 
     , onAdd: function() {
-        var self = this;
+        /*var self = this;
 
         this.setState({ adding: true});
         self.props.onAdd({ text: self.state.text })
@@ -24,6 +25,11 @@ var ListItem = React.createClass({
                     , adding: false
                 });
             });
+            */
+
+		ItemActions.create({
+			text: this.state.text
+		});
     }
 
     , onChangeText: function(text) {
@@ -43,7 +49,7 @@ var ListItem = React.createClass({
                 <div className="input-group">
                     <TextField onChange={ this.onChangeText } value={ this.state.text } enabled={ !this.state.adding } />
                     <span className="input-group-btn">
-                        <Button onClick={ this.onAdd } label="Add" enabled={ this.isAddButtonEnabled() } primary="true" />
+                        <Button onClick={ this.onAdd } label="Add" enabled={ this.isAddButtonEnabled() } primary={ true } />
                     </span>
                 </div>
             </form>

@@ -12,11 +12,11 @@ var AppDispatcher = require('../dispatcher/AppDispatcher')
 	, CHANGE_EVENT = 'change';
 
 function create(item) {
-	//this.firebaseRef.push(item);
+	firebaseRef.push(item);
 }
 
 function destroy(itemName) {
-	//new Firebase(firebaseItemsUrl + '/' + itemName).remove();
+	new Firebase(firebaseItemsUrl + '/' + itemName).remove();
 }
 
 var ItemStore = merge(EventEmitter.prototype, {
@@ -39,6 +39,8 @@ var ItemStore = merge(EventEmitter.prototype, {
 
 AppDispatcher.register(function(payload) {
 	var action = payload.action;
+
+	console.log(payload);
 
 	switch(action.actionType) {
 		case ItemConstants.ITEM_CREATE:
